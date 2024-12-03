@@ -32,11 +32,19 @@ public class Branch {
     @OneToMany(mappedBy = "branch")
     private List<Account> accounts;
 
+
     @OneToMany(mappedBy = "branch")
     private List<Room> rooms;
 
+
     @OneToMany(mappedBy = "branch")
-    private List<Customer> customers;
+    private List<CustomerBranch> customerBranches;
+
+//    @OneToMany(mappedBy = "branch")
+//    private List<Room> rooms;
+//
+//    @OneToMany(mappedBy = "branch")
+//    private List<Customer> customers;
 
     @OneToMany(mappedBy = "branch")
     private List<Invoice> invoices;

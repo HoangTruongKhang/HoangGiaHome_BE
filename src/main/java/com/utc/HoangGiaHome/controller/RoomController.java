@@ -2,17 +2,16 @@ package com.utc.HoangGiaHome.controller;
 
 import com.utc.HoangGiaHome.dto.RoomDTO;
 import com.utc.HoangGiaHome.entity.Room;
+import com.utc.HoangGiaHome.form.CreatingRoomForm;
 import com.utc.HoangGiaHome.form.RoomFilterForm;
+import com.utc.HoangGiaHome.form.UpdatingRoomForm;
 import com.utc.HoangGiaHome.service.IRoomService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,5 +37,16 @@ public class RoomController {
     public RoomDTO getRoomById(@PathVariable int room_id){
         Room room = roomService.getRoomById(room_id);
         return modelMapper.map (room, RoomDTO.class);
+    }
+
+    @PostMapping
+    public void  createRoom(@RequestBody CreatingRoomForm form){
+        roomService.createRoom(form);
+    }
+
+    @PutMapping("{room_id}")
+    public void updateRoom(@PathVariable int room_id, @RequestBody UpdatingRoomForm form){
+        form.setRoom_id(room_id);
+        roomService.updateRoom(form);
     }
 }

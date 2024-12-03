@@ -43,13 +43,20 @@ public class Customer {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
-    @ManyToOne
-    @JoinColumn(name = "branch_id")
-    private Branch branch;
+    @OneToMany(mappedBy = "customer")
+    private List<CustomerBranch> customerBranches;
 
-    @ManyToOne
-    @JoinColumn(name = "room_id")
-    private Room room;
+//    @ManyToOne
+//    @JoinColumn(name = "branch_id")
+//    private Branch branch;
+
+
+    @OneToMany(mappedBy = "customer")
+    private List<CustomerRoom> customerRooms;
+
+//    @ManyToOne
+//    @JoinColumn(name = "room_id")
+//    private Room room;
 
     @OneToMany(mappedBy = "customer")
     private List<CustomerService> customerServices;

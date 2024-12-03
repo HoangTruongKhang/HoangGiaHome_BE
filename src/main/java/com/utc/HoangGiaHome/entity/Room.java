@@ -38,7 +38,7 @@ public class Room {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
-    @Column(name = "roomStatus", nullable = false)
+    @Column(name = "roomStatus")
     @Enumerated(EnumType.STRING)
     private RoomStatus roomStatus;
 
@@ -47,7 +47,10 @@ public class Room {
     private Branch branch;
 
     @OneToMany(mappedBy = "room")
-    private List<Customer> customers;
+    private List<CustomerRoom> customerRooms;
+
+//    @OneToMany(mappedBy = "room")
+//    private List<Customer> customers;
 
     @OneToMany(mappedBy = "room")
     private List<Invoice> invoices;
